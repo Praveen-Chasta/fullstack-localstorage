@@ -2,9 +2,13 @@ const express = require("express");
 const mongoose = require('mongoose');
 const jwt = require("jsonwebtoken")
 const dotenv = require('dotenv').config();
+const cors = require("cors")
 
 const { User } = require('./db/db')
 const app = express();
+
+
+app.use(cors())
 
 
 mongoose.connect(process.env.MONGODB_URL)
@@ -16,6 +20,8 @@ mongoose.connect(process.env.MONGODB_URL)
 )
 
 app.use(express.json());
+
+
 
 
 app.post('/signup', async (req,res) => {
